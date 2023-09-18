@@ -1,5 +1,5 @@
-const API_BASE_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:5001";
+//const API_BASE_URL = "http://localhost:5001";
+const API_BASE_URL ="https://tf-capstone-welovemovies.onrender.com";
 /**was REACT_APP_API_BASE_URL, not match with env file */
 /**
  * Defines the default headers for these functions to work with `json-server`
@@ -68,10 +68,13 @@ function populateTheaters(signal) {
  */
 export async function listMovies(signal) {
   const url = new URL(`${API_BASE_URL}/movies?is_showing=true`);
-  const addReviews = populateReviews(signal);
-  return await fetchJson(url, { headers, signal }, []).then((movies) =>
-    Promise.all(movies.map(addReviews))
-  );
+  //change request to list movies, so it won't request too many times
+  //const addReviews =populateReviews(signal) ;
+  
+  return await fetchJson(url, { headers, signal }, [])
+  //.then((movies) =>
+   // Promise.all(movies.map(addReviews))
+ // );
 }
 
 /**
